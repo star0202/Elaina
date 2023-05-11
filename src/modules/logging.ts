@@ -1,6 +1,6 @@
 import { config } from '../config'
 import { COLORS } from '../constants'
-import { diff } from '../utils'
+import { chunkedFields, diff } from '../utils'
 import { Extension, listener } from '@pikokr/command.ts'
 import { blue, green, red, yellow } from 'chalk'
 import type {
@@ -124,7 +124,7 @@ class Logging extends Extension {
           .addFields(
             { name: 'User', value: `<@${msg.author.id}>`, inline: true },
             { name: 'Channel', value: `<#${msg.channelId}>`, inline: true },
-            { name: 'Message', value: codeBlock('ts', inspect(msg.toJSON())) }
+            ...chunkedFields(msg, 1024)
           ),
       ],
     })
