@@ -5,6 +5,8 @@ type Config = {
   log_channel: string
   default_role: string
   bot_role: string
+  announce_channel: string
+  announce_role: string
 }
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires

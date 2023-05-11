@@ -4,5 +4,7 @@
 
   "log_channel": "",
   "default_role": "",
-  "bot_role": ""
+  "bot_role": "",
+  "announce_channel": "",
+  "announce_role": ""
 }
