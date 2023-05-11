@@ -1,6 +1,6 @@
 import { config } from '../config'
 import { COLORS } from '../constants'
-import { diff, isIrrelevant } from '../utils'
+import { diff } from '../utils'
 import { Extension, listener } from '@pikokr/command.ts'
 import { blue, green, red, yellow } from 'chalk'
 import type {
@@ -49,7 +49,7 @@ class Logging extends Extension {
 
   @listener({ event: 'messageUpdate' })
   async messageUpdateLogger(before: Message, after: Message) {
-    if (isIrrelevant(before) && isIrrelevant(after)) return
+    if (before.author.bot) return
 
     const msgDiff = diff(after, before)
 
@@ -100,7 +100,7 @@ class Logging extends Extension {
 
   @listener({ event: 'messageDelete' })
   async messageDeleteLogger(msg: Message) {
-    if (isIrrelevant(msg)) return
+    if (msg.author.bot) return
 
     this.logger.info(
       `Deleted: ${green(msg.author.tag)} (${blue(
