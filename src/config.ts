@@ -1,6 +1,8 @@
 type Config = {
   token: string
   guilds: string[]
+
+  log_channel: string
 }
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires

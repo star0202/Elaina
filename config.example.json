@@ -1,4 +1,6 @@
 {
   "token": "",
-  "guilds": []
+  "guilds": [],
+
+  "log_channel": ""
 }
