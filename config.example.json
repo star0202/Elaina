@@ -2,5 +2,7 @@
   "token": "",
   "guilds": [],
 
-  "log_channel": ""
+  "log_channel": "",
+  "default_role": "",
+  "bot_role": ""
 }
