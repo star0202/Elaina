@@ -1,19 +1,12 @@
 import { config } from './config'
-import { CustomizedCommandClient } from './structures'
-import { Client } from 'discord.js'
+import { Elaina } from './structures'
 
-const client = new Client({
-  intents: ['Guilds', 'DirectMessages'],
-})
+const cts = new Elaina()
 
-const cts = new CustomizedCommandClient(client)
-
-const start = async () => {
+;(async () => {
   await cts.setup()
 
-  await client.login(config.token)
+  await cts.discord.login(config.token)
 
   await cts.getApplicationCommandsExtension()?.sync()
-}
-
-start().then()
+})()
