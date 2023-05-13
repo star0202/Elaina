@@ -12,7 +12,8 @@ export const diff = (
     _.isEqual
   ).forEach(([k, v]) => {
     Object.defineProperty(diff.original, k, {
-      value: (before as any)[k], // eslint-disable-line @typescript-eslint/no-explicit-any
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      value: (before as any)[k],
       enumerable: true,
     })
 
