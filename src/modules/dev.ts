@@ -10,7 +10,7 @@ import {
   ChatInputCommandInteraction,
   codeBlock,
 } from 'discord.js'
-import path from 'path'
+import { basename, join } from 'path'
 
 class Dev extends Extension {
   @ownerOnly
@@ -24,7 +24,7 @@ class Dev extends Extension {
 
     const data = await this.commandClient.registry.reloadModules().then((r) =>
       r.map((x) => ({
-        path: path.basename(x.file),
+        path: basename(x.file),
         result: x.result,
         error: x.error?.message.normalize(),
       }))
@@ -64,7 +64,7 @@ class Dev extends Extension {
     await i.deferReply()
 
     await this.commandClient.registry.loadModulesAtPath(
-      path.join(__dirname, `${name}.ts`)
+      join(__dirname, `${name}.ts`)
     )
 
     await i.editReply(codeBlock(`✅ ${name}.ts`))

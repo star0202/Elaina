@@ -6,7 +6,7 @@ import { green } from 'chalk'
 import { Client } from 'discord.js'
 import { short } from 'git-rev-sync'
 import { Jejudo } from 'jejudo'
-import path from 'path'
+import { join } from 'path'
 
 export class Elaina extends CommandClient {
   private jejudo: Jejudo | null = null
@@ -30,7 +30,7 @@ export class Elaina extends CommandClient {
     await this.enableApplicationCommandsExtension({ guilds: config.guilds })
 
     await this.registry.loadAllModulesInDirectory(
-      path.join(__dirname, '..', 'modules')
+      join(__dirname, '..', 'modules')
     )
   }
 
