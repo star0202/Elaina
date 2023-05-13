@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import { differenceWith, isEqual } from 'lodash'
 
 export const diff = (
   after: object,
@@ -6,10 +6,10 @@ export const diff = (
 ): { original: object; updated: object } => {
   const diff = { original: {}, updated: {} }
 
-  _.differenceWith(
+  differenceWith(
     Object.entries(after),
     Object.entries(before),
-    _.isEqual
+    isEqual
   ).forEach(([k, v]) => {
     Object.defineProperty(diff.original, k, {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
