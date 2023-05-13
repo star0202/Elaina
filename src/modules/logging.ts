@@ -124,7 +124,7 @@ class Logging extends Extension {
           .addFields(
             { name: 'User', value: `<@${msg.author.id}>`, inline: true },
             { name: 'Channel', value: `<#${msg.channelId}>`, inline: true },
-            ...chunkedFields(msg, 1024)
+            ...chunkedFields(msg)
           ),
       ],
     })
