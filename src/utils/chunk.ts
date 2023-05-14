@@ -1,17 +1,13 @@
+import { toString } from './object'
 import { splitMessage } from './text'
 import type { EmbedField } from 'discord.js'
 import { codeBlock } from 'discord.js'
-import { inspect } from 'util'
 
 export const chunk = (
   content: string | object,
   maxLength: number
 ): string[] => {
-  if (typeof content !== 'string')
-    content = inspect(content, {
-      maxArrayLength: 200,
-      depth: 2,
-    })
+  if (typeof content !== 'string') content = toString(content)
 
   if (content.length <= maxLength) return [content]
 

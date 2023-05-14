@@ -1,6 +1,6 @@
 import { config } from '../config'
 import { COLORS } from '../constants'
-import { chunkedFields, diff } from '../utils'
+import { chunkedFields, diff, toString } from '../utils'
 import { Extension, listener } from '@pikokr/command.ts'
 import { blue, green, red, yellow } from 'chalk'
 import type {
@@ -17,7 +17,6 @@ import {
   EmbedBuilder,
   codeBlock,
 } from 'discord.js'
-import { inspect } from 'util'
 
 class Logging extends Extension {
   @listener({ event: 'applicationCommandInvokeError', emitter: 'cts' })
@@ -57,8 +56,8 @@ class Logging extends Extension {
       `Updated: ${green(before.author.tag)} (${blue(
         before.author.id
       )}) - ${red.bold.strikethrough(
-        inspect(msgDiff.original, { colors: false })
-      )} -> ${yellow.bold(inspect(msgDiff.updated, { colors: false }))}`
+        toString(msgDiff.original)
+      )} -> ${yellow.bold(toString(msgDiff.updated))}`
     )
 
     const channel = after.client.channels.cache.get(
@@ -79,11 +78,11 @@ class Logging extends Extension {
             { name: 'Channel', value: `<#${after.channelId}>`, inline: true },
             {
               name: 'Before',
-              value: codeBlock('ts', inspect(msgDiff.original)),
+              value: codeBlock('ts', toString(msgDiff.original)),
             },
             {
               name: 'After',
-              value: codeBlock('ts', inspect(msgDiff.updated)),
+              value: codeBlock('ts', toString(msgDiff.updated)),
             }
           ),
       ],

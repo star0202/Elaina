@@ -1,4 +1,5 @@
 import { differenceWith, isEqual } from 'lodash'
+import { inspect } from 'util'
 
 export const diff = (
   after: object,
@@ -24,4 +25,11 @@ export const diff = (
   })
 
   return diff
+}
+
+export const toString = (obj: object): string => {
+  return inspect(obj, {
+    maxArrayLength: 200,
+    depth: 2,
+  })
 }
