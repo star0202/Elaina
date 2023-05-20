@@ -37,7 +37,7 @@ export class Elaina extends CommandClient {
   async onReady() {
     this.jejudo = new Jejudo(this.discord, {
       isOwner: (user) => this.owners.has(user.id),
-      prefix: `;;`,
+      prefix: `;`,
       noPermission: (i) => i.reply('Permission denied'),
     })
 
