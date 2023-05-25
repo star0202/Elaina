@@ -3,7 +3,7 @@ import { VERSION } from '../constants'
 import { logger } from '../utils'
 import { CommandClient } from '@pikokr/command.ts'
 import { green } from 'chalk'
-import { Client } from 'discord.js'
+import { ActivityType, Client } from 'discord.js'
 import { short } from 'git-rev-sync'
 import { Jejudo } from 'jejudo'
 import { join } from 'path'
@@ -47,7 +47,14 @@ export class Elaina extends CommandClient {
       this.jejudo?.handleInteraction(i)
     })
 
-    this.discord.user?.setActivity(`v${VERSION} (${short()})`)
+    this.discord.user?.setPresence({
+      activities: [
+        {
+          name: `${VERSION} (${short()})`,
+          type: ActivityType.Playing,
+        },
+      ],
+    })
 
     this.logger.info(`Logged in as: ${green(this.discord.user?.tag)}`)
 
