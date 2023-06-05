@@ -2,7 +2,6 @@ type Config = {
   token: string
   guilds: string[]
 
-  log_channel: string
   default_role: string
   bot_role: string
   announce_channel: string
