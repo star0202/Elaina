@@ -9,7 +9,10 @@ class Announce extends Extension {
 
     if (msg.channelId !== config.announce_channel) return
 
-    await msg.reply(`<@&${config.announce_role}>`)
+    await msg.reply({
+      content: `<@&${config.announce_role}>`,
+      allowedMentions: { roles: [config.announce_role] },
+    })
   }
 }
 
